@@ -1,8 +1,8 @@
-declare module "@imkylecat/codemirror/mode/zig/zig" {
+declare module "@imkylecat/codemirror-mode-zig" {
     import { Mode } from "codemirror";
 
-  interface ZigMode extends Mode<any> {};
+    interface ZigMode extends Mode<any> {};
 
-  const ZigMode: ZigMode;
-  export = ZigMode;
+    const ZigMode: ZigMode;
+    export = ZigMode;
 };
