@@ -1,1 +1,1 @@
-declare module '@imkylecat/codemirror-mode-zig';
+declare module 'codemirror-mode-zig';
