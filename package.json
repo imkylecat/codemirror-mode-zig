@@ -1,8 +1,13 @@
 {
   "name": "codemirror-mode-zig",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
+  "keywords": [
+    "zig",
+    "npm",
+    "codemirror"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
