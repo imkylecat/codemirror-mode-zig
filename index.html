@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CodeMirror Demo</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/codemirror.min.css"
+        />
+        <style>
+            .CodeMirror {
+                height: auto;
+                border: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <textarea id="code" name="code">// Hello World in Zig with various features
+const std = @import("std");
+
+// This is a single-line comment
+pub fn main() !void {
+    // Get stdout for printing
+    const stdout = std.io.getStdOut().writer();
+    
+    // String example
+    const greeting = "Hello, World!";
+    
+    // Number examples
+    const answer: i32 = 42;
+    const pi: f64 = 3.14159;
+    const hex_value = 0xFF;
+    
+    // Print the greeting
+    try stdout.print("{s}\n", .{greeting});
+    
+    // Print numbers
+    try stdout.print("The answer is: {d}\n", .{answer});
+    try stdout.print("Pi is approximately: {d}\n", .{pi});
+    try stdout.print("Hex value: 0x{X}\n", .{hex_value});
+    
+    // Conditional example
+    if (answer == 42) {
+        try stdout.print("That's the answer!\n", .{});
+    } else {
+        try stdout.print("Wrong answer!\n", .{});
+    }
+    
+    // Loop example
+    var i: usize = 0;
+    while (i < 3) : (i += 1) {
+        try stdout.print("Loop iteration: {d}\n", .{i});
+    }
+    
+    // For loop
+    for (0..5) |num| {
+        try stdout.print("For loop: {d}\n", .{num});
+    }
+}
+        </textarea>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.20/codemirror.min.js"></script>
+        <script src="./index.js"></script>
+        <script>
+            var editor = CodeMirror.fromTextArea(
+                document.getElementById("code"),
+                {
+                    lineNumbers: true,
+                    mode: "zig",
+                }
+            );
+        </script>
+    </body>
+</html>
