@@ -1,6 +1,6 @@
 {
   "name": "codemirror-mode-zig",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "keywords": [
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/imkylecat/codemirror-mode-zig.git"
   },
   "author": "imkylecat",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/imkylecat/codemirror-mode-zig/issues"
   },
