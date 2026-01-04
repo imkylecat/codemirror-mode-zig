@@ -13,6 +13,7 @@ jobs:
         permissions:
             contents: read
             id-token: write
+            attestations: write
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -20,6 +21,11 @@ jobs:
                   node-version: "20.x"
                   registry-url: "https://registry.npmjs.org"
             - run: npm ci
+            - run: npm pack
+            - name: Attest package
+              uses: actions/attest-build-provenance@v1
+              with:
+                  subject-path: "*.tgz"
             - run: npm publish --provenance
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -29,6 +35,7 @@ jobs:
             contents: read
             id-token: write
             packages: write
+            attestations: write
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -37,6 +44,11 @@ jobs:
                   always-auth: true
                   registry-url: "https://npm.pkg.github.com"
             - run: npm ci
+            - run: npm pack
+            - name: Attest package
+              uses: actions/attest-build-provenance@v1
+              with:
+                  subject-path: "*.tgz"
             - run: |
                   npm pkg set name="@imkylecat/codemirror-mode-zig"
                   npm publish --provenance --access public --registry https://npm.pkg.github.com
