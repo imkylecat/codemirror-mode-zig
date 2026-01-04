@@ -11,9 +11,10 @@ jobs:
     publish-npm:
         runs-on: ubuntu-latest
         permissions:
-            contents: write
             id-token: write
+            contents: write
             attestations: write
+            packages: write
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -23,9 +24,14 @@ jobs:
             - run: npm ci
             - run: npm pack
             - name: Attest package
-              uses: actions/attest-build-provenance@v1
+              id: attest
+              uses: actions/attest-build-provenance@v3
               with:
                   subject-path: "*.tgz"
+            - name: Upload attestation to release
+              run: gh release upload ${{ github.event.release.tag_name }} ${{ steps.attest.outputs.bundle-path }}
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - run: npm publish --provenance
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -36,10 +42,10 @@ jobs:
     publish-github-packages:
         runs-on: ubuntu-latest
         permissions:
-            contents: read
             id-token: write
-            packages: write
+            contents: read
             attestations: write
+            packages: write
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -50,7 +56,7 @@ jobs:
             - run: npm ci
             - run: npm pack
             - name: Attest package
-              uses: actions/attest-build-provenance@v1
+              uses: actions/attest-build-provenance@v3
               with:
                   subject-path: "*.tgz"
             - run: |
