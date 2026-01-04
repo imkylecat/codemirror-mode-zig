@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/imkylecat/codemirror-mode-zig/issues"
   },
-  "homepage": "https://github.com/imkylecat/codemirror-mode-zig#readme"
+  "homepage": "https://github.com/imkylecat/codemirror-mode-zig#readme",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ]
 }
